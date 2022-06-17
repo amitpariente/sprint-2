@@ -1,0 +1,9 @@
+@import "styles/basic/html.css";
+@import"styles/basic/helpers.css";
+@import"styles/basic/fronts.css";
+@import"styles/basic/var.css";
+@import"styles/layout/main-header.css";
+@import"styles/layout/modal.css";
+@import"styles/layout/main.css";
+@import"styles/layout/footer.css";
+@import"styles/mq/mq.css";

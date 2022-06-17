@@ -1,0 +1,22 @@
+.main-header{
+    background-color: var(--clr1);
+    color: var(--clr2);
+   
+
+}
+
+.main-header .main-nav a {
+    display: flex;
+    color: var(--clr2);
+    text-decoration: none;
+    text-transform: capitalize;
+    justify-content: center;
+    align-self: center;
+    padding: 33px;
+}
+
+.main-logo{
+    font-family:PressStart;
+    font-size: 1.1em;
+    padding-left: 2.5rem;
+}
