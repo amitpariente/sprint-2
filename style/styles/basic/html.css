@@ -1,14 +1,16 @@
 * {
     box-sizing: border-box;
 }
-html{
-    font-family:Montserrat,sans-serif;
-}
-body{
-    margin: 0;
-    font-size: 1.25rem;
-    line-height:1.25 ;
-    
-    
+
+html {
+    font-family: Montserrat, sans-serif;
+    /* width: 100%; */
 }
 
+body {
+    height: 100%;
+    margin: 0 ;
+    font-size: 1.25rem;
+    line-height: 1.25;
+
+}

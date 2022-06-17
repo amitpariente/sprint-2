@@ -1,13 +1,8 @@
 .modal {
-    /* display: none; */
     display: none;
     border-radius: 10px;
     background-color: var(--clr7);
-    /* padding: 2rem; */
-    /* left: 50%; 
-     top: 50%; */
-    /* z-index: 50; */
-    /* transform: translate(-50%, -50%); */
+
 }
 
 .modal-open {
@@ -61,3 +56,46 @@
     width: 100%;
     object-fit: cover;
 }
+
+.owner-img{
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-inline-start: 50px;
+  
+  }
+  .owner-text{
+    margin-inline-start: 50px;
+    
+  
+  
+  }
+  .description{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    justify-content: center;
+  
+  }
+  p{
+    margin: 0;
+  }
+  
+  .box{
+    position: relative;
+    background-color: var(--clr1);
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 6px;
+    margin: 0 4.5px;
+    color: var(--clr2);
+  }
+  
+  .box i{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+  
+  }
+  

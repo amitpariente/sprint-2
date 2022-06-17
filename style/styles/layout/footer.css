@@ -1,11 +1,17 @@
-footer{
+footer {
+    margin-bottom: 0;
+    color: var(--clr2);
+    width: 100%;
+}
+
+.footer-container {
     background-color: var(--clr1);
     padding: 60px;
     text-align: center;
-    color: var(--clr2);
+
 }
 
-footer .main-logo{
+footer .main-logo {
     padding: 0;
-   
+
 }

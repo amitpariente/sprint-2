@@ -9,6 +9,7 @@ function init() {
     gCtx = gElCanvas.getContext('2d')
     renderMeme()
     renderGallery()
+  
 }
 
 
@@ -34,7 +35,33 @@ function renderMeme(givenLine = {}) {
     drawImg(selectedImgId, lines, givenLine)
 }
 
+function shareMeme(){
+    const imgDataUrl = gElCanvas.toDataURL("image/jpeg")
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.share-container').innerHTML = `
+        <a class=" btn btn-icon btn-facebook" href=""https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false"><i
+        class="fa fa-facebook"></i><span>Share</span></a>` 
+    }
+    doUploadImg(imgDataUrl, onSuccess);
+}
 
+function doUploadImg(imgDataUrl, onSuccess) {
+    const formData = new FormData();
+    formData.append('img', imgDataUrl)
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })   
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+}
 
 
 function drawImg(selectedImgId, lines, givenLine = {}) {

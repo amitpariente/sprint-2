@@ -23,23 +23,33 @@
     </header>
     <div class="editor-container">
 
-        <section class="main-container">
-            <canvas height="650px" width="660px"></canvas>
-            <div class="editor-controller flex align-center">
+        <section class="main-container grid">
+
+            <canvas id="canvas" height="650px" width="660px"></canvas>
+            <div class="editor-controller flex  align-center">
                 <input class="memeTxt" type="text" placeholder="Put Your Text Hereeeee:)" onkeyup="setLineTxt(this)"
                     onchange="addLineTxt()">
+
                 <div>
                     <div><button onclick="plusBtnClicked()">+</button>
-                        <button class="switc-line" onclick="onSwitchLine()"><img
+                        <button class="switc-line  " onclick="onSwitchLine()"><img
                                 src="/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                     </div>
                 </div>
-                <div><button class="increase-btn" onclick="increaseByClick()"><img src="/ICONS/increase font - icon.png"
-                            alt=""></button>
-                    <button class="decrease-btn" onclick="decreaseByClick()"><img src="/ICONS/decrease font - icon.png"
-                            alt=""></button>
+                <div><button class="increase-btn " onclick="increaseByClick()"><img
+                            src="/ICONS/increase font - icon.png" alt=""></button>
+                    <button class="decrease-btn  " onclick="decreaseByClick()"><img
+                            src="/ICONS/decrease font - icon.png" alt=""></button>
                     <input type="color" class="color-input" onchange="addLineClr(value)">
                     <i type="color" class="icon-color fa-solid fa-palette color-logo" onclick="changeColor()"></i>
+
+                </div>
+                <div class="button-wrapper">
+
+                    <a class="background-button" href="#" onclick="shareMeme()" title="Share"></a>
+                </div>
+
+                <div class="share-container">
                 </div>
             </div>
         </section>
@@ -53,22 +63,28 @@
         </div>
         <section class="grid-container">
         </section>
-        <div>
-            <h1>Monica Geller</h1>
-            <p>is a fictional character, one of the six main characters who appears on the American sitcom Friends
-                (1994-2004). Created by David Crane and Marta Kauffman</p>
-            <div class="social">
-                <div class="github box"><i class="fa-brands fa-twitter icon"></i></div>
-                <div class="facebook box"><i class="fa-brands fa-github"></i></div>
-                <div class="linkedin box"><i class="fa-brands fa-linkedin-in"></i></div>
+        <div class="description flex align-center">
+            <div><img class="owner-img" src="/img/women.img.jpg" alt=""></div>
+            <div class="owner-text">
+                <h1>Monica Geller</h1>
+                <p>is a fictional character, one of the six main characters</p>
+                <p> who appears on the American sitcom Friends (1994</p>
+                <p>-2004). Created by David Crane and Marta Kauffman</p>
+                <div class="social flex">
+                    <div class="github box"><i class="fa-brands fa-github"></i></div>
+                    <div class="facebook box"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="linkedin box"><i class="fa-brands fa-linkedin-in"></i></div>
+                </div>
             </div>
 
         </div>
     </div>
 
     <footer>
-        <div class="main-logo">Memegen</div>
-        <p>all rights reserved 2019</p>
+        <div class="footer-container">
+            <div class="main-logo">Memegen</div>
+            <p>all rights reserved 2019</p>
+        </div>
 
     </footer>
     <script src="https://kit.fontawesome.com/a2e5662f27.js" crossorigin="anonymous"></script>

@@ -1,12 +1,14 @@
-@media (max-width:660px
-) {
+@media screen and (max-width:680px) {
 
     body {
         font-size: 14px;
     }
-    .editor-container{
-        max-width: 600px;
+
+    html {
+        width: 100%;
     }
+
+
 
     .main-header {
         justify-content: space-between;
@@ -30,6 +32,7 @@
         transform-origin: top;
         justify-content: center;
         background-color: var(--clr1);
+        z-index: 10;
 
 
     }
@@ -51,40 +54,78 @@
         border: none;
         background-color: var(--clr1);
     }
+
+    #canvas {
+        height: 550px;
+        width: 100%
+    }
 }
 
 /* medium */
-@media(min-width:800px) {
-    html {
+@media screen and (min-width:680px) {
+    body {
         font-size: 14px;
+        height: 100vh;
     }
+
     .menu-toggle {
         display: none;
     }
+
     .main-container {
-        flex-direction: row;
+        margin: 0 auto;
+
+        flex-direction: column;
     }
+
     .main-layout {
         margin: auto 0;
         padding-left: 1em;
         padding-right: 1em;
     }
 
+    #canvas {
+        height: 650px;
+        width: 650px;
+    }
 
 }
 
 
 /* large */
 
-@media (min-width:1020px) {
-    html {
+@media screen and (min-width:1070px) {
+    body {
         font-size: 1rem;
     }
+
     .menu-toggle {
         display: none;
         background-color: var(--clr1);
     }
+
+
     .main-container {
+        margin: 0;
         flex-direction: row;
     }
+
+    #canvas {
+        height: 650px;
+        width: 650px;
+        grid-column: 1/2;
+    }
+
+    .main-container .grid {
+        grid-template-columns: 3fr 2fr;
+        grid-template-rows: 1fr;
+
+
+    }
+
+    .editor-controller {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+
 }
