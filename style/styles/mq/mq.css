@@ -108,6 +108,7 @@
     .main-container {
         margin: 0;
         flex-direction: row;
+        height:793px;
     }
 
     #canvas {

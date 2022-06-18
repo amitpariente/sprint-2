@@ -10,19 +10,21 @@ var gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 40,
             align: 'left',
-            color: 'red'
+            color: 'red',
+            pos: false,
+            width: 0
         },
     ]
+   
 }
 function getMeme() {
     return gMeme
 }
 
 function setLineTxt(el) {
-    var elColorInput = document.querySelector('input[type=color]')
-    var color = elColorInput.value
+    const elColorInput = document.querySelector('input[type=color]')
+    const color = elColorInput.value
     if (gMeme.selectedLineIdx == -1) {
-        console.log(el.value);
         var text = el.value
         var line = {
             txt: text,
@@ -39,10 +41,10 @@ function setLineTxt(el) {
 }
 
 function addLineTxt() {
-    var elColorInput = document.querySelector('input[type=color]')
-    var color = elColorInput.value
-    var elTxtInput = document.querySelector('.memeTxt')
-    var txt = elTxtInput.value
+    const elColorInput = document.querySelector('input[type=color]')
+    const color = elColorInput.value
+    const elTxtInput = document.querySelector('.memeTxt')
+    const txt = elTxtInput.value
     if (txt === '') return
     var line = {
         txt,
@@ -119,7 +121,40 @@ function increaseByClick() {
 function decreaseByClick() {
     var wantedLine = gMeme.lines[gMeme.selectedLineIdx]
     console.log(gMeme.lines[gMeme.selectedLineIdx]);
-    console.log(wantedLine.size);    
-    wantedLine.size -=4
+    console.log(wantedLine.size);
+    wantedLine.size -= 4
     renderMeme()
+}
+
+function getTextClicked(pos) {
+    var clickedX = pos.x
+    var clickedY = pos.y
+    console.log(clickedX)
+    console.log(clickedY)
+
+
+
+
+    var clickedLines = gMeme.lines.filter((line, index) => {
+        console.log(line.pos.x)
+        console.log(line.pos.y)
+        console.log(line.width)
+
+
+
+        if ((clickedX >= line.pos.x && clickedX <= line.pos.x + line.width) && (clickedY <= line.pos.y && clickedY >= line.pos.y - line.size)) {
+            gMeme.selectedLineIdx = index
+            changeInputText(line.txt)
+            return true
+        }
+        else {
+            return false
+        }
+    })
+    if (clickedLines.length == 0) return false
+    return true
+}
+function changeInputText(txt) {
+    var elMemeTxt = document.querySelector('.memeTxt')
+    elMemeTxt.value = txt
 }

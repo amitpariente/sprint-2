@@ -207,7 +207,6 @@ a.background-button:after {
   align-items: center;
 }
 a.background-button:hover:after {
-  -webkit-transform: translate(2.5%, 10%);
   transform: translate(2.5%, 10%);
   text-shadow: 2px 2px 1px white;
   color: black;
@@ -216,4 +215,21 @@ a.background-button:hover:after {
   width: 355px;
   display: inline-block;
   margin: 20px;
+}
+.stickers-controller{
+  margin-top: 10px;
+  padding: 20px;
+  background-color: var(--clr2);
+  border-radius: 6px;
+}
+.stickers-controller img{
+  height: 80px;
+
+}
+
+.forward{
+  color: black;
+}
+.backwards{
+  color: black;
 }
