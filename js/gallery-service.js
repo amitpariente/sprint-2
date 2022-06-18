@@ -110,8 +110,6 @@ function openModal() {
     document.querySelector('.share-container').innerHTML = ''
     var elGalleryBtn = document.querySelector('.gallery')
     elGalleryBtn.classList.toggle('clicked')
-
-
 }
 
 function closeModal() {
