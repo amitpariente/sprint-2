@@ -33,15 +33,18 @@
                 <div>
                     <div><button onclick="plusBtnClicked()">+</button>
                         <button class="switc-line  " onclick="onSwitchLine()"><img
-                                src="/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                                src="icons-imgs/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                     </div>
                 </div>
                 <div><button class="increase-btn " onclick="increaseByClick()"><img
-                            src="/ICONS/increase-font-icon.png"></button>
+                            src="icons-imgs/increase-font-icon.png"></button>
                     <button class="decrease-btn  " onclick="decreaseByClick()"><img
-                            src="/ICONS/decrease-font-icon.png"></button>
+                            src="icons-imgs/decrease-font-icon.png"></button>
                     <input type="color" class="color-input" onchange="addLineClr(value)">
                     <i type="color" class="icon-color fa-solid fa-palette color-logo" onclick="changeColor()"></i>
+                    <button onclick="onAlignText('left')"><i class="fa-solid fa-align-left"></i></button>
+                    <button onclick="onAlignText('center')"><i class="fa-solid fa-align-center"></i></button>
+                    <button onclick="onAlignText('right')"><i class="fa-solid fa-align-right"></i></button>
                     <div class="stickers-controller flex">
                         <a href="#" onclick="onMoveToPage('-')" class="fa-solid fa-angle-left clean-decoration backwards"></a>
                         <div class="stickers-container"></div>
@@ -60,7 +63,7 @@
     <div class="modal">
         <div class="sort-container">
             <input class="sort-input" type="text" onkeyup="sortImgByTxt(this.value)">
-            <img class="sort-img" src="/ICONS/search-icon.png" alt="">
+            <img class="sort-img" src="icons-imgs/search-icon.png" alt="">
         </div>
         <div class ="button-wrapper align-center">
         <a  class="background-button" href="#" title="Im Flexible" onclick="getRandomMeme()"> </a>
@@ -68,7 +71,7 @@
         <section class="grid-container">
         </section>
         <div class="description flex align-center">
-            <div><img class="owner-img" src="/img/women.img.jpg" alt=""></div>
+            <div><img class="owner-img" src="img/women.img.jpg" alt=""></div>
             <div class="owner-text">
                 <h1>Monica Geller</h1>
                 <p>is a fictional character, one of the six main characters</p>

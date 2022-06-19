@@ -5,6 +5,7 @@ var gSelectedImgId
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
+    selectedStickerIdx: 0,
     lines: [
         {
             txt: 'I sometimes eat Falafel',
@@ -14,8 +15,11 @@ var gMeme = {
             pos: false,
             width: 0
         },
+    ],
+    stickers: [
+
     ]
-   
+
 }
 function getMeme() {
     return gMeme
@@ -126,23 +130,41 @@ function decreaseByClick() {
     renderMeme()
 }
 
+function onAlignText(move) {
+    moveAlignText(move)
+    renderMeme()
+}
+
+
+function moveAlignText(move) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    const canvas = getCanvas()
+
+    if (move === 'left') {
+        line.pos = { x: 0, y: line.pos.y}
+        line.align = 'left'
+        console.log(line);
+    }
+    else if (move === 'center') {
+        const line = gMeme.lines[gMeme.selectedLineIdx]
+        line.pos = { x: ((canvas.width / 2) - (line.width / 2)), y: line.pos.y}
+        line.align = 'center'
+        console.log(line);
+    }
+    else if (move === 'right') {
+        const line = gMeme.lines[gMeme.selectedLineIdx]
+        line.pos = { x: canvas.width - line.width, y: line.pos.y }
+        line.align = 'right'
+        console.log(line);
+    }
+}
+
 function getTextClicked(pos) {
     var clickedX = pos.x
     var clickedY = pos.y
-    console.log(clickedX)
-    console.log(clickedY)
-
-
-
-
     var clickedLines = gMeme.lines.filter((line, index) => {
-        console.log(line.pos.x)
-        console.log(line.pos.y)
-        console.log(line.width)
-
-
-
-        if ((clickedX >= line.pos.x && clickedX <= line.pos.x + line.width) && (clickedY <= line.pos.y && clickedY >= line.pos.y - line.size)) {
+        if ((clickedX >= line.pos.x && clickedX <= line.pos.x + line.width) &&
+            (clickedY <= line.pos.y && clickedY >= line.pos.y - line.size)) {
             gMeme.selectedLineIdx = index
             changeInputText(line.txt)
             return true

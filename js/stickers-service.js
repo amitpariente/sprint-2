@@ -2,27 +2,56 @@
 const PAGE_SIZE = 3
 var gPageIdx = 0
 var gStickersCount
+
 var gStickers = [
-    '<img src="/stickers/sticker-1.png">',
-    '<img src="/stickers/sticker-2.png">',
-    '<img src="/stickers/sticker-3.png">',
-    '<img src="/stickers/sticker-4.png">',
-    '<img src="/stickers/sticker-5.png">',
-    '<img src="/stickers/sticker-6.png">',
-    '<img src="/stickers/sticker-7.png">',
-    '<img src="/stickers/sticker-8.png">',
-    '<img src="/stickers/sticker-9.png">',
-    '<img src="/stickers/sticker-10.png">',
-    '<img src="/stickers/sticker-11.png">',
-    '<img src="/stickers/sticker-12.png">',
-    '<img src="/stickers/sticker-13.png">',
-    '<img src="/stickers/sticker-14.png">',
-    '<img src="/stickers/sticker-15.png">',
+    { id: 0, src: 'stickers-imgs/sticker-1.png' },
+    { id: 1, src: 'stickers-imgs/sticker-2.png' },
+    { id: 2, src: 'stickers-imgs/sticker-3.png' },
+    { id: 3, src: 'stickers-imgs/sticker-4.png' },
+    { id: 4, src: 'stickers-imgs/sticker-5.png' },
+    { id: 5, src: 'stickers-imgs/sticker-6.png' },
+    { id: 6, src: 'stickers-imgs/sticker-7.png' },
+    { id: 7, src: 'stickers-imgs/sticker-8.png' },
+    { id: 8, src: 'stickers-imgs/sticker-9.png' },
+    { id: 9, src: 'stickers-imgs/sticker-10.png' },
+    { id: 10, src: 'stickers-imgs/sticker-11.png' },
+    { id: 11, src: 'stickers-imgs/sticker-12.png' },
+    { id: 12, src: 'stickers-imgs/sticker-13.png' },
+    { id: 13, src: 'stickers-imgs/sticker-14.png' },
+    { id: 14, src: 'stickers-imgs/sticker-15.png' },
 ]
+
+function _getStickers() {
+    return gStickers
+}
 
 function onMoveToPage(page) {
     moveToPage(page)
     renderStickers()
+}
+
+function GetStickerClicked(pos) {
+    const meme = getMeme()
+    var clickedX = pos.x
+    var clickedY = pos.y
+    console.log(clickedX);
+    console.log(clickedY);
+
+    var clickedstickers = meme.stickers.filter((sticker, index) => {
+        console.log(clickedY ,sticker.pos.y);
+        console.log(clickedX , sticker.pos.x);
+        if ((clickedX >= sticker.pos.x && clickedX <= sticker.pos.x + sticker.width) &&
+            (clickedY >= sticker.pos.y && clickedY >= sticker.pos.y - sticker.size)) {
+            gMeme.selectedStickerIdx = index
+            return true
+        }
+        else {
+            console.log('yo');
+            return false
+        }
+    })
+    if (clickedstickers.length == 0) return false
+    return true
 }
 
 function getStickersForDisplay() {
@@ -47,7 +76,7 @@ function renderStickers() {
     const stickers = getStickersForDisplay()
     const strHTMLs = stickers.map(
         (sticker) => `
-        <a onclick="onStickerSelect(this)" href="#">${sticker}</a>`
+        <a data-id=${sticker.id} onclick="onStickerSelect(this)" href="#"><img src="${sticker.src}"></a>`
     )
     document.querySelector('.stickers-container').innerHTML = strHTMLs.join('')
 

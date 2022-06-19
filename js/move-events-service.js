@@ -1,4 +1,5 @@
 var gIsDrag = false
+var gIsStickerDrag = false
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 function addListeners() {
     addMouseListeners()
@@ -18,44 +19,47 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-    //Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
     var isLineClicked = getTextClicked(pos)
-    if (!isLineClicked) return
-    gIsDrag = true
-    console.log(1);
+    var isStickerClicked = GetStickerClicked(pos)
+    if (isLineClicked) {
+        gIsDrag = true
+    }
+    else if (isStickerClicked) {
+        gIsStickerDrag = true
+    }
     document.body.style.cursor = 'grabbing'
+
 }
 
 function onMove(ev) {
     const meme = getMeme();
+    const pos = getEvPos(ev)
     if (gIsDrag) {
-        const pos = getEvPos(ev)
-        //Calc the delta , the diff we moved
         meme.lines[gMeme.selectedLineIdx].pos = pos
-        //The canvas is render again after every move
+        renderMeme()
+    }
+    if (gIsStickerDrag) {
+        meme.stickers[meme.selectedStickerIdx].pos = pos
+        console.log( meme.stickers[meme.selectedStickerIdx].pos);
         renderMeme()
     }
 }
 
 function onUp() {
     gIsDrag = false
+    gIsStickerDrag=false
     document.body.style.cursor = 'auto'
 }
 
 function getEvPos(ev) {
-    //Gets the offset pos , the default pos
     var pos = {
         x: ev.offsetX,
         y: ev.offsetY
     }
-    // Check if its a touch ev
     if (gTouchEvs.includes(ev.type)) {
-        //soo we will not trigger the mouse ev
         ev.preventDefault()
-        //Gets the first touch point
         ev = ev.changedTouches[0]
-        //Calc the right pos according to the touch screen
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop

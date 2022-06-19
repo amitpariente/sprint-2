@@ -14,6 +14,10 @@ function init() {
 
 }
 
+function getCanvas() {
+    return gElCanvas
+}
+
 
 function toggleMenu(elBtn) {
     document.body.classList.toggle('menu-open');
@@ -21,16 +25,54 @@ function toggleMenu(elBtn) {
 
 }
 
+
+
 function onStickerSelect(el) {
-    const selectedSticker = el.querySelector('img')
-    gCtx.drawImage(selectedSticker, 0, 0, 130, 90)
+    const meme = getMeme()
+    const stickers = _getStickers()
+    const id = el.dataset.id
+    var selectedSticker = stickers.filter(sticker => {
+        if (sticker.id == id) {
+            return true
+        }
+    })[0]
+    console.log(selectedSticker);
+    const stickerIdx = selectedSticker.id
+    const sticker = {
+        id: stickerIdx,
+        size: 100,
+        width: 70,
+        pos: { x: 0, y: 100 }
+    }
+    meme.selectedStickerIdx = stickerIdx
+    meme.stickers.push(sticker)
+    console.log(meme);
+    drawSticker(stickerIdx, sticker)
+    
+    
 }
+
+function drawSticker(stickerIdx, sticker) {
+    const meme = getMeme()
+    const stickers = _getStickers()
+    const chosenSticker = meme.stickers.find(sticker => (stickerIdx == sticker.id))
+    var img = new Image()
+    img.src = stickers[stickerIdx].src
+    img.onload = () => {
+        if (chosenSticker.pos.x === 0 && chosenSticker.pos.y === 100) {
+            gCtx.drawImage(img, 0, 100, sticker.size, sticker.width);
+        } else {
+            gCtx.drawImage(img, chosenSticker.pos.x, chosenSticker.pos.y, sticker.size, sticker.width);
+        }
+    }
+}
+
+
 
 function onImgSelect(el) {
     var imgEl = el.querySelector('img')
     const selectedImgId = imgEl.dataset.id
     closeModal()
-
     setImg(selectedImgId)
 
 
@@ -66,12 +108,12 @@ function doUploadImg(imgDataUrl, onSuccess) {
         })
 }
 function renderMeme(givenLine = {}) {
-    const { selectedImgId, selectedLineIdx, lines } = getMeme()
-    drawImg(selectedImgId, lines, givenLine)
+    const { selectedImgId, selectedLineIdx, lines, stickers } = getMeme()
+    drawImg(selectedImgId, lines, stickers, givenLine)
 
 }
 
-function drawImg(selectedImgId, lines, givenLine = {}) {
+function drawImg(selectedImgId, lines, stickers, givenLine = {}) {
     var img = new Image()
     const images = getImg()
     var chosenImg = images.filter(image => {
@@ -86,10 +128,17 @@ function drawImg(selectedImgId, lines, givenLine = {}) {
             gCtx.font = `${line.size}px Montserrat`;
             line.width = gCtx.measureText(line.txt).width
             drawText(line.size, line.txt, index, line, line.pos, line.color)
+
         })
         if (givenLine.txt) {
             drawText(givenLine.size, givenLine.txt, lines.length, givenLine, givenLine.pos, givenLine.color)
         }
+
+        stickers.map(sticker => {
+            drawSticker(sticker.id, sticker)
+        })
+
+
     }
 }
 
@@ -97,26 +146,25 @@ function drawImg(selectedImgId, lines, givenLine = {}) {
 function drawText(size, text, idx, line, pos = false, color = 'red') {
     gCtx.lineWidth = 2;
     gCtx.fillStyle = color;
-    console.log(line);
     if (pos == false) {
         if (idx === 0) {
-            line.pos = {x: 0, y: size}
+            line.pos = { x: 0, y: size }
             gCtx.fillText(text, 0, size)
         }
         if (idx === 1) {
-            line.pos = {x: 0, y: gElCanvas.height}
+            line.pos = { x: 0, y: gElCanvas.height }
             gCtx.fillText(text, 0, gElCanvas.height)
         }
         if (idx === 2) {
-            line.pos = {x: 0, y: gElCanvas.height / 2}
+            line.pos = { x: 0, y: gElCanvas.height / 2 }
             gCtx.fillText(text, 0, gElCanvas.height / 2)
         }
         if (idx > 2 && idx <= 6) {
-            line.pos = {x: 0, y: gElCanvas.height / idx}
+            line.pos = { x: 0, y: gElCanvas.height / idx }
             gCtx.fillText(text, 0, gElCanvas.height / idx)
         }
         if (idx > 6) {
-            line.pos = {x: 0, y: gElCanvas.height / (idx - 5) + gElCanvas.height / 2}
+            line.pos = { x: 0, y: gElCanvas.height / (idx - 5) + gElCanvas.height / 2 }
             gCtx.fillText(text, 0, gElCanvas.height / (idx - 5) + gElCanvas.height / 2)
         }
     }
