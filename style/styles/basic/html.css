@@ -4,13 +4,17 @@
 
 html {
     font-family: Montserrat, sans-serif;
-    /* width: 100%; */
+    max-width: 100%;
+    overflow-x:hidden
+   
 }
 
 body {
+    max-width: 100%;
+    overflow-x:hidden;
     height: 100%;
     margin: 0 ;
     font-size: 1.25rem;
     line-height: 1.25;
-
 }
+
