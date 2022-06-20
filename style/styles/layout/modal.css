@@ -45,7 +45,7 @@
     padding-inline-end: 24.5px;
     display: grid;
     gap: 10.5px;
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
 
 
