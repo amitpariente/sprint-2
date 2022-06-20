@@ -41,6 +41,11 @@
         max-height: 100vh;
         transform: translateY(0);
     }
+    
+    .description{
+        flex-direction: column;
+
+    }
 
 
 
